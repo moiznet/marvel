@@ -1,0 +1,309 @@
+@font-face {
+    font-family: 'TradeGothic';
+    src: url('TradeGothic-Bold.eot');
+    src: url('TradeGothic-Bold.eot?#iefix') format('embedded-opentype'),
+        url('TradeGothic-Bold.woff') format('woff'),
+        url('TradeGothic-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+body{
+    font-family: 'arial';
+    font-weight: bold;
+    font-style: normal;
+    }
+
+.loader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9;
+    display: none;
+}
+  /*  header*/
+
+  header {
+    background-color: #2D2727;
+    padding: 16px 0px;
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input.search {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
+.search {
+    float: none;
+    margin: 0px auto;
+    width: 600px;
+}
+
+input#target {
+    width: 100%;
+    border: none;
+    border-radius: 2px;
+    font-size: 20px;
+    padding: 12px;
+    
+}
+
+
+.logo {
+    position: absolute;
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 60px;
+    background-color: aqua;
+    margin-top: -6px;
+    text-indent: -999px;
+    margin-left: 30px;
+}
+
+/*  header*/
+
+
+
+
+/* main */
+
+main {
+    width: 100%;
+    max-width: 1280px;
+    background-color: #ebebeb;
+    margin: 0 auto;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.left {
+    width: 75%;
+    float: left;
+    padding: 19px;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.right {
+    width: 25%;
+    float: right;
+    height: 500px;
+}
+
+div#favoritelist {
+    background-color: #EBEBEB;
+}
+
+
+div#results {
+    background-color: #f4f4f4;
+}
+
+/* main */
+
+
+/* footer */
+
+footer {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    float: none;
+}
+
+/* footer */
+
+
+
+/* results */
+
+
+
+.toolbar {
+    height: 60px;
+}
+
+
+.toolbar h2 {margin: 0px;font-family: arial;padding-left: 7px;font-size: 29px;display: inline;}
+
+
+.toolbar h2:before{
+    content: url(../images/icons/characters.png);
+    position: relative;
+    margin-top: 31px;
+}
+
+.selectorder {
+    float: right;
+    width: 287px;
+}
+
+.selectorder select {
+    width: 100%;
+    padding: 15px;
+    font-size: 21px;
+}
+
+
+#results article {
+    width: 47%;
+    background-color: #fff;
+    overflow: visible;
+    float: left;
+    box-sizing: border-box;
+    padding: 0px;
+    margin-left: 3%;
+    margin-top: 40px;
+    min-height: 420px;
+}
+
+.characterimg {
+    width: 198px;
+    height: 205px;
+    float: left;
+    background-color: aliceblue;
+    background-image: url(../images/spider_icon.png);
+    border-radius: 50%;
+    margin-left: -17px;
+    margin-top: -23px;
+    -webkit-box-shadow: 11px 11px 39px -20px rgba(0,0,0,0.85);
+    -moz-box-shadow: 11px 11px 39px -20px rgba(0,0,0,0.85);
+    box-shadow: 11px 11px 39px -20px rgba(0,0,0,0.85);
+    overflow: hidden;
+}
+
+title {
+    display: block;
+    font-size: 18px;
+    letter-spacing: 1px;
+    float: left;
+    margin-top: -8px;
+    margin-left: 20px;
+    max-width: 228px;
+}
+
+.description button {
+    float: left;
+    margin-top: 8px;
+    display: inline;
+    background-color: #EC1D23;
+    color: white;
+    font-weight: 700;
+    padding: 12px 8px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.related_comics {
+    float: left;
+    box-sizing: border-box;
+    padding: 17px;
+}
+
+.related_comics .title {
+    width: 100%;
+    margin-top: 0px;
+    font-size: 18px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.related_comics .item {
+    float: left;
+    width: 45%;
+    margin: 14px 0px;
+    font-weight: lighter;
+    box-sizing: border-box;
+    padding: 0px 23px;
+    font-size: 14px;
+}
+
+
+
+
+/*favoritelist*/
+
+
+.toolbar2 {
+    height: 60px;
+    padding: 25px;
+}
+
+
+.toolbar2 h2 {margin: 0px;font-family: arial;font-size: 29px;display: inline;text-align: center;}
+
+
+.toolbar2 h2:before{
+    content: url(../images/icons/favourites.png);
+    position: relative;
+    float: left;
+    margin-right: 9px;
+}
+
+
+
+
+
+/*favoritelist*/
+
+
+
+
+    div.item {
+    float: left;
+    width: 100%;
+}
+
+.item * {
+    float: left;
+}
+
+figure {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+
+#results figure img {
+    width: 100%;
+    height: 110%;
+}
+
+.description {float: left;width: 212px;font-weight: lighter;font-size: 14px;padding-top: 10px;overflow: visible;margin-left: 25px;}
+
+h2.name {
+    width: 75%;
+    background-color: aqua;
+}
+
+
+#favoritelist article {
+    text-align: center;
+}
+
+#favoritelist figure {
+    background-color: aquamarine;
+    width: 100%;
+    max-width: 216px;
+    margin: 0 auto;
+}
+
+.close {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    margin-left: 196px;
+    margin-top: -16px;
+    background-image: url(../images/icons/btn-delete.png);
+    background-repeat: no-repeat;
+}
