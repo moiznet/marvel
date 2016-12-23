@@ -10,6 +10,28 @@
             var charactersBychar = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=" + namestr + "&limit=10&offset=" + offset + "&orderBy=name&apikey=" + KEY;
 
 
+            var   fnpopup =  function() {
+			    //----- OPEN
+			    $('[data-popup-open]').on('click', function(e)  {
+			        var targeted_popup_class = jQuery(this).attr('data-popup-open');
+			        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+
+			        $("header,main,footer").addClass( "blur" );
+			 
+			        e.preventDefault();
+			    });
+			 
+			    //----- CLOSE
+			    $('[data-popup-close]').on('click', function(e)  {
+			        var targeted_popup_class = jQuery(this).attr('data-popup-close');
+			        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+			  $("header,main,footer").removeClass( "blur" );
+			        e.preventDefault();
+			    });
+					}();			
+
+
+
             var drawpaginator = function(total, current) {
 
 
@@ -104,6 +126,13 @@
     $(".close").click(function() {
         alert("se cierra");
     });
+
+
+
+    
+
+
+
 
 
 
