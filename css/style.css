@@ -118,6 +118,9 @@ footer {
     max-width: 1280px;
     margin: 0 auto;
     float: none;
+    background-color: #2D2727;
+    height: 80px;
+    text-align: center;
 }
 
 /* footer */
@@ -439,7 +442,16 @@ figcaption {
 /*pop au */
 
 
+/*footer*/
+div#copyrights {
+    padding: 32px 51px;
+    color: white;
+    font-weight: 100;
+    text-align: left;
+    font-size: 13px;
+}
 
+div#grabilitylogo img {padding: 15px;}
 
 
 
@@ -524,4 +536,7 @@ h2.name {
     margin-top: -16px;
     background-image: url(../images/icons/btn-delete.png);
     background-repeat: no-repeat;
+}
+figcaption h3 {
+    font-size: 14px;
 }

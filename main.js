@@ -5,7 +5,7 @@
     var KEY = "588714d2b75a25d74cbb37bec8ed775d";
     var results = {};
     var search = {};
-    var  favoriteList = {};
+    var favoriteList = {};
     favoriteList.items = [];
     favoriteList.addComic = function(id, title, img) {
         var tohtml = "",
@@ -30,16 +30,18 @@
         }
 
 
-        if (!found) { drawfavourite(id, title, img);
+        if (!found) {
+            drawfavourite(id, title, img);
             var item = { id: id, title: title, image: img };
-            favoriteList.items.push(item); } else { console.log("Comic alredy favourite"); }
+            favoriteList.items.push(item);
+        } else { console.log("Comic alredy favourite"); }
 
         console.log(favoriteList.items);
         localStorage.setItem("favoriteList", JSON.stringify(favoriteList.items));
     };
     favoriteList.removeComic = function(id) {
 
-       
+
 
         var found = false;
         for (var i = 0; i < favoriteList.items.length; i++) {
@@ -82,16 +84,10 @@
 
         });
 
-
-
-
-
-
-
-
     }
 
     search.getCHaractersbychar = function(namestr, offset) {
+            console.log("ofset: " + offset);
 
             var charactersBychar = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=" + namestr + "&limit=10&offset=" + offset + "&orderBy=name&apikey=" + KEY;
 
@@ -140,32 +136,31 @@
                     e.preventDefault();
                 });
 
-
-
-
-
-
-
             };
-
 
 
             var drawpaginator = function(total, current) {
 
-
-
                 if (total > 10) {
 
+                    var left = 10 - (total % 10);
+                    if (left > 0) {
+                        var numPage = (total / 10) + parseFloat("0." + left); } else { numPage = 1; }
 
+                    var actualPage = current / 10;
 
+                    // $(".paginador").html("<div class='prev'>" + (actualPage - 1) + "</div> <div class='current'>" + actualPage + "</div> <div class='next'>" + (actualPage + 1) + "</div> ");
 
+                    for (var i = 0; i <= numPage; i++) {
+
+                    }
+
+                    console.log("modulo" + numPage);
 
                 } else {
 
 
-
                 }
-
 
                 console.log("total" + total + " current: " + current)
             };
@@ -173,10 +168,6 @@
             var drawResults = function(results) {
                 var inHTML = "";
                 $.each(results.results, function(index, value) {
-
-
-
-
 
                     if (value.comics.available > 0) {
 
@@ -192,11 +183,6 @@
 
 
                         });
-
-
-
-
-
 
 
                     } else {
@@ -240,18 +226,12 @@
 
     $("#target").keyup(function() {
         $(".loader").fadeIn();
-        search.getCHaractersbychar($(this).val(), 0);
+        search.getCHaractersbychar($(this).val(), '10');
     });
 
 
 
     favoriteList.refresh();
-
-
-
-
-
-
 
 
 }());
