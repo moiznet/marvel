@@ -7,41 +7,47 @@
     var search = {};
     var favoriteList = {};
     favoriteList.items = [];
+
     favoriteList.addComic = function(id, title, img) {
         var tohtml = "",
 
-            drawfavourite = function(id, title, img) {
+            drawfavourite = function(idx, titlex, imgx) {
 
-                tohtml = "<article id='" + id + "' > <figure > <div class='close erase'  id='" + id + "'></div> <img src='" + img + "'>  </figure><figcaption><h3>" + title + "</h3></figcaption>		</article>";
+                tohtml = "<article id='" + idx + "' > <figure > <div class='close erase'  id='" + idx + "'></div> <img src='" + imgx + "'>  </figure><figcaption><h3>" + titlex + "</h3></figcaption>		</article>";
                 $(".results").append(tohtml);
                 $('.erase').on('click', function(e) {
-                    var id = jQuery(this).attr('id');
-                    favoriteList.removeComic(id);
+                    var idg = jQuery(this).attr('id');
+                    favoriteList.removeComic(idg);
                 });
 
             };
 
         var found = false;
-        for (var i = 0; i < favoriteList.items.length; i++) {
-            if (favoriteList.items[i].id == id) {
-                found = true;
-                break;
+        if (favoriteList.items !== null && favoriteList.items.length !== 0) {
+
+
+            for (var i = 0; i < favoriteList.items.length; i++) {
+                if (favoriteList.items[i].id == id) {
+                    found = true;
+                    break;
+                }
             }
+
         }
 
-
         if (!found) {
-            drawfavourite(id, title, img);
+
             var item = { id: id, title: title, image: img };
+
             favoriteList.items.push(item);
+            drawfavourite(id, title, img);
         } else { console.log("Comic alredy favourite"); }
 
-        console.log(favoriteList.items);
+
         localStorage.setItem("favoriteList", JSON.stringify(favoriteList.items));
+        $('[data-popup-close]').click();
     };
     favoriteList.removeComic = function(id) {
-
-
 
         var found = false;
         for (var i = 0; i < favoriteList.items.length; i++) {
@@ -52,42 +58,36 @@
             }
         }
         localStorage.setItem("favoriteList", JSON.stringify(favoriteList.items));
-        console.log("arreglo");
-        console.log(favoriteList.items);
+
+
         favoriteList.refresh();
-
-
-
-
-
 
     };
     favoriteList.refresh = function() {
 
+        if (localStorage.getItem("favoriteList") != "") {
 
 
-        favoriteList.items = JSON.parse(localStorage.getItem("favoriteList"));
-        $(".results").html('');
-        $.each(favoriteList.items, function(index, value) {
+            favoriteList.items = JSON.parse(localStorage.getItem("favoriteList"));
+            $(".results").html('');
+            $.each(favoriteList.items, function(index, value) {
 
-            tohtml = "<article id='" + value.id + "' > <figure > <div class='close erase'  id='" + value.id + "'></div> <img src='" + value.image + "'>  </figure><figcaption><h3>" + value.title + "</h3></figcaption>		</article>";
+                tohtml = "<article id='" + value.id + "' > <figure > <div class='close erase'  id='" + value.id + "'></div> <img src='" + value.image + "'>  </figure><figcaption><h3>" + value.title + "</h3></figcaption>		</article>";
 
-            $(".results").append(tohtml);
-            $('.erase').on('click', function(e) {
-                var id = jQuery(this).attr('id');
-                favoriteList.removeComic(id);
+                $(".results").append(tohtml);
+                $('.erase').on('click', function(e) {
+                    var id = jQuery(this).attr('id');
+                    favoriteList.removeComic(id);
+                });
+
             });
 
-
-
-
-
-        });
+        }
 
     }
 
     search.getCHaractersbychar = function(namestr, offset) {
-            console.log("ofset: " + offset);
+
 
             var charactersBychar = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=" + namestr + "&limit=10&offset=" + offset + "&orderBy=name&apikey=" + KEY;
 
@@ -96,36 +96,34 @@
                 //----- OPEN
                 $('[data-popup-open]').on('click', function(e) {
 
-
-
                     var targeted_popup_class = jQuery(this).attr('data-popup-open');
                     var comic_id = jQuery(this).attr('id');
                     var comicByid = "http://gateway.marvel.com/v1/public/comics/" + comic_id + "?apikey=588714d2b75a25d74cbb37bec8ed775d";
                     $.get(comicByid, function(data) {
-                        console.log(data);
+
                         if (data.code == 200) {
-                            console.log("succes rest get");
+
                             $(".pop-image").html("<img src='" + data.data.results[0].thumbnail.path + "/portrait_uncanny." + data.data.results[0].thumbnail.extension + "' alt=''>");
                             $(".pop-title").html(data.data.results[0].title);
                             $(".pop-description").html(data.data.results[0].description);
                             $(".pop-price").html(data.data.results[0].prices[0].price);
-                            $('.adtofavoritesbtn').click(function() { favoriteList.addComic(data.data.results[0].id, data.data.results[0].title, data.data.results[0].thumbnail.path + "/portrait_uncanny." + data.data.results[0].thumbnail.extension) });
+
                             $('[data-popup="' + targeted_popup_class + '"]').fadeIn(250);
+
+                            $('.popup-inner footer').html("<div class='adtofavoritesbtn' id='add_" + data.data.results[0].id + "'><h3>	adde to favourites</h3>	</div> <div class='buyforbtn'>	<h3>	buy for <div class='pop-price'>	</div>	</h3></div>");
+
+                            $('#add_' + data.data.results[0].id).click(
+                                function() {
+                                    favoriteList.addComic(data.data.results[0].id, data.data.results[0].title, data.data.results[0].thumbnail.path + "/portrait_uncanny." + data.data.results[0].thumbnail.extension)
+
+                                });
                             $("header,main").addClass("blur");
                         } else {
                             console.log("error");
                         } //if( data.code == 200
                     }, "json"); // $.get( charactersBychar
-
-
-
-
-
-
                     e.preventDefault();
                 });
-
-
 
                 //----- CLOSE
                 $('[data-popup-close]').on('click', function(e) {
@@ -145,7 +143,8 @@
 
                     var left = 10 - (total % 10);
                     if (left > 0) {
-                        var numPage = (total / 10) + parseFloat("0." + left); } else { numPage = 1; }
+                        var numPage = (total / 10) + parseFloat("0." + left);
+                    } else { numPage = 1; }
 
                     var actualPage = current / 10;
 
@@ -154,15 +153,8 @@
                     for (var i = 0; i <= numPage; i++) {
 
                     }
-
-                    console.log("modulo" + numPage);
-
-                } else {
-
-
-                }
-
-                console.log("total" + total + " current: " + current)
+                } else {}
+                //console.log("total" + total + " current: " + current)
             };
 
             var drawResults = function(results) {
@@ -203,9 +195,9 @@
 
 
             $.get(charactersBychar, function(data) {
-                console.log(data);
+
                 if (data.code == 200) {
-                    console.log("succes rest get");
+
                     drawResults(data.data);
                 } else {
                     console.log("error");
@@ -213,12 +205,6 @@
             }, "json"); // $.get( charactersBychar
 
         } //search.getCHaractersbychar = function
-
-
-
-    console.log("hola");
-
-
     $("#target").val("a");
 
 
@@ -229,9 +215,5 @@
         search.getCHaractersbychar($(this).val(), '10');
     });
 
-
-
     favoriteList.refresh();
-
-
 }());
