@@ -65,7 +65,12 @@
     };
     favoriteList.refresh = function() {
 
-        if (localStorage.getItem("favoriteList") != "") {
+    	console.log("refresh:");
+    	console.log(localStorage.getItem("favoriteList"));
+    	if(localStorage.getItem("favoriteList") != null){
+
+
+    		  if (localStorage.getItem("favoriteList") != "") {
 
 
             favoriteList.items = JSON.parse(localStorage.getItem("favoriteList"));
@@ -78,11 +83,19 @@
                 $('.erase').on('click', function(e) {
                     var id = jQuery(this).attr('id');
                     favoriteList.removeComic(id);
-                });
+             		   });
 
-            });
+           		 });
 
-        }
+       		 }
+
+
+
+
+
+    	}
+
+      
 
     }
 
@@ -125,7 +138,7 @@
                     e.preventDefault();
                 });
 
-                //----- CLOSE
+             
                 $('[data-popup-close]').on('click', function(e) {
                     var targeted_popup_class = jQuery(this).attr('data-popup-close');
                     $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
@@ -215,5 +228,5 @@
         search.getCHaractersbychar($(this).val(), '10');
     });
 
-    favoriteList.refresh();
+  favoriteList.refresh();
 }());
