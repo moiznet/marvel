@@ -225,7 +225,7 @@
 
     $("#target").keyup(function() {
         $(".loader").fadeIn();
-        search.getCHaractersbychar($(this).val(), '10');
+        search.getCHaractersbychar($(this).val(), '0');
     });
 
   favoriteList.refresh();

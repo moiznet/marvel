@@ -191,7 +191,7 @@ title {
     float: left;
     margin-top: -8px;
     margin-left: 20px;
-    max-width: 228px;
+    max-width: 215px;
 }
 
 .description button {
@@ -509,7 +509,7 @@ figure {
     height: 110%;
 }
 
-.description {float: left;width: 212px;font-weight: lighter;font-size: 14px;padding-top: 10px;overflow: visible;margin-left: 25px;}
+.description {float: left;width: 200px;font-weight: lighter;font-size: 14px;padding-top: 10px;overflow: visible;margin-left: 25px;}
 
 h2.name {
     width: 75%;
@@ -536,6 +536,7 @@ h2.name {
     margin-top: -16px;
     background-image: url(../images/icons/btn-delete.png);
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 figcaption h3 {
     font-size: 14px;
